@@ -22,24 +22,17 @@ end
 local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
-  vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<cr>", opts)
   vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-  vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<cr>", opts)
+  vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
   vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
   vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-  vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<cr>", opts)
-  vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<cr>", opts)
-
-  vim.keymap.set("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)
-  vim.keymap.set("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<cr>", opts)
-  vim.keymap.set("n", "<leader>wl", "<cmd>Lspsaga show_workspace_diagnostics<cr>", opts)
-  vim.keymap.set("n", "<leader>ncd", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
-  vim.keymap.set("n", "<leader>pcd", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-
-  vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
-  vim.keymap.set("n", "<leader>sh", "<cmd>Lspsaga signature_help<cr>", opts)
-  vim.keymap.set("n", "<leader>wa", "<cmd>Lspsaga add_workspace_folder<cr>", opts)
-  vim.keymap.set("n", "<leader>wr", "<cmd>Lspsaga remove_workspace_folder<cr>", opts)
+  vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  vim.keymap.set("n", "<leader>cd", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", opts)
+  vim.keymap.set("n", "<leader>cn", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", opts)
+  vim.keymap.set("n", "<leader>cp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", opts)
+  vim.keymap.set("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+  vim.keymap.set("n", "<leader>cd", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 
   if client.name == "tsserver" then
     vim.keymap.set("n", "<leader>rf", "<cmd>TypescriptRenameFile<cr>", opts)

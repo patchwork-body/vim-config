@@ -2,10 +2,10 @@
 
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -21,7 +21,7 @@ return require('packer').startup(function(use)
   -- https://github.com/wbthomason/packer.nvim#the-startup-function
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/plenary.nvim'
-  use {'nvim-telescope/telescope.nvim', tag = '0.1.0'}
+  use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
 
   --------- UI ---------
   -- https://github.com/nvim-tree/nvim-web-devicons
@@ -33,7 +33,19 @@ return require('packer').startup(function(use)
   -- https://github.com/navarasu/onedark.nvim
   use 'navarasu/onedark.nvim'
 
-  --------- AutoCompletion adn LSP ---------
+  -- https://github.com/MunifTanjim/nui.nvim
+  use 'MunifTanjim/nui.nvim'
+
+  -- https://github.com/nvim-neo-tree/neo-tree.nvim
+  use { 'nvim-neo-tree/neo-tree.nvim', branch = "v2.x" }
+
+  -- https://github.com/akinsho/toggleterm.nvim
+  use 'akinsho/toggleterm.nvim'
+
+  -- https://github.com/nvim-lualine/lualine.nvim
+  use 'nvim-lualine/lualine.nvim'
+
+  --------- AutoCompletion and LSP ---------
   -- https://github.com/neovim/nvim-lspconfig
   use 'neovim/nvim-lspconfig'
 
@@ -50,14 +62,17 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
 
-  -- https://github.com/glepnir/lspsaga.nvim
-  use {'glepnir/lspsaga.nvim', branch = 'main'}
-
   -- https://github.com/jose-elias-alvarez/typescript.nvim
   use 'jose-elias-alvarez/typescript.nvim'
 
   -- https://github.com/onsails/lspkind.nvim
   use 'onsails/lspkind-nvim'
+
+  -- https://github.com/rafamadriz/friendly-snippets
+  use 'rafamadriz/friendly-snippets'
+
+  -- https://github.com/L3MON4D3/LuaSnip
+  use 'L3MON4D3/LuaSnip'
 
   --------- Code Editing ---------
   -- https://github.com/kylechui/nvim-surround
@@ -73,10 +88,12 @@ return require('packer').startup(function(use)
   -- https://github.com/ruifm/gitlinker.nvim
   use 'ruifm/gitlinker.nvim'
 
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim
+  use 'jose-elias-alvarez/null-ls.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
   end
 end)
-

@@ -20,7 +20,14 @@ cmp.setup {
   },
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      local ok, luasnip = pcall(require, "luasnip")
+
+      if not ok then
+        vim.notify("luasnip module not found", vim.log.levels.ERROR)
+        return
+      end
+
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = {
